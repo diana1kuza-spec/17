@@ -1,0 +1,47 @@
+def is_palindrome(text):
+    """Проверяет, является ли строка палиндромом."""
+    return text == text[::-1]
+
+
+def is_prime(num):
+    """Проверяет, является ли число простым."""
+    if num < 2:
+        return False
+    i = 2
+    while i * i <= num:
+        if num % i == 0:
+            return False
+        i += 1
+    return True
+
+
+def is_valid_password(password):
+    """Проверяет пароль вида a:b:c по трем правилам."""
+    # Разбиваем пароль по символу ':'
+    parts = password.split(':')
+    
+    # Проверяем, что частей ровно 3
+    if len(parts) != 3:
+        return False
+    
+    # Преобразуем части в числа
+    try:
+        a = int(parts[0])
+        b = int(parts[1])
+        c = int(parts[2])
+    except ValueError:
+        return False
+    
+    # a - палиндром (преобразуем число в строку)
+    # b - простое число
+    # c - четное число
+    if is_palindrome(str(a)) and is_prime(b) and c % 2 == 0:
+        return True
+    else:
+        return False
+
+# Проверка работы
+print(is_valid_password('1221:101:22'))   # True
+print(is_valid_password('565:30:50'))     # False (30 не простое)
+print(is_valid_password('112:7:9'))       # False (длина не 3 части? Нет, 3 части: '112','7','9', но 112 не палиндром)
+print(is_valid_password('1221:101:22:22'))# False (4 части)
