@@ -1,0 +1,28 @@
+def is_password_good(password):
+    """Функция проверяет надежность пароля и возвращает True/False."""
+    # 1. Длина не менее 8 символов
+    if len(password) < 8:
+        return False
+    
+    # 2. Содержит хотя бы одну заглавную букву
+    has_upper = False
+    # 3. Содержит хотя бы одну строчную букву
+    has_lower = False
+    # 4. Содержит хотя бы одну цифру
+    has_digit = False
+    
+    # Проходим по каждому символу
+    for char in password:
+        if char.isupper():
+            has_upper = True
+        elif char.islower():
+            has_lower = True
+        elif char.isdigit():
+            has_digit = True
+    
+    # Пароль надежен, если все условия выполнены
+    return has_upper and has_lower and has_digit
+
+# Проверка работы
+print(is_password_good('aabbCC11OP'))  # True
+print(is_password_good('abC1pu'))      # False (длина < 8)
