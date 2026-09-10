@@ -1,0 +1,21 @@
+def is_prime(num):
+    """Функция возвращает True, если число простое, иначе False."""
+    # 1 не является простым числом
+    if num < 2:
+        return False
+    
+    # Проверяем делители от 2 до квадратного корня из num
+    # Если есть делитель, число не простое
+    i = 2
+    while i * i <= num:
+        if num % i == 0:
+            return False
+        i += 1
+    
+    # Если делителей не найдено, число простое
+    return True
+
+# Проверка работы
+print(is_prime(1))   # False
+print(is_prime(10))  # False
+print(is_prime(17))  # True
