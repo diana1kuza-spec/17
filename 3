@@ -1,0 +1,25 @@
+def is_prime(num):
+    """Вспомогательная функция: возвращает True, если число простое."""
+    if num < 2:
+        return False
+    i = 2
+    while i * i <= num:
+        if num % i == 0:
+            return False
+        i += 1
+    return True
+
+
+def get_next_prime(num):
+    """Функция возвращает первое простое число, большее числа num."""
+    # Начинаем проверку со следующего числа
+    candidate = num + 1
+    # Ищем первое простое число
+    while not is_prime(candidate):
+        candidate += 1
+    return candidate
+
+# Проверка работы
+print(get_next_prime(6))   # 7
+print(get_next_prime(7))   # 11
+print(get_next_prime(14))  # 17
